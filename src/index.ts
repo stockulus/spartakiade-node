@@ -2,7 +2,14 @@ import * as fastify from 'fastify'
 
 import { PORT } from './env'
 
-const todos = [
+type Todo = {
+  id: number
+  title: string
+  done: boolean
+  comment: string
+}
+
+const todos: Array<Todo> = [
   {
     id: 1,
     title: 'DB Ticket',
