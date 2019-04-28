@@ -1,0 +1,69 @@
+{
+  "name": "node-workshop",
+  "version": "0.1.0",
+  "description": "workshop app",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon | pino-pretty -t",
+    "build": "tsc --project tsconfig.server.json",
+    "start": "cross-env NODE_ENV=production node ./dist/index.js",
+    "test": "npm run typescript",
+    "db": "docker-compose up -d db",
+    "db:stop": "docker-compose stop db",
+    "docker": "docker-compose up -d",
+    "docker:build": "docker-compose build",
+    "docker:stop": "docker-compose stop",
+    "docker:logs": "docker-compose logs -f -t",
+    "lint": "eslint src/*",
+    "lint:fix": "eslint . --fix",
+    "typescript": "tsc -b",
+    "updtr": "updtr --save-exact"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src/**/*.*"
+    ],
+    "exec": "ts-node --project tsconfig.server.json src/index.ts"
+  },
+  "dependencies": {
+    "fastify": "2.3.0",
+    "pg": "7.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "11.13.8",
+    "@types/pg": "7.4.14",
+    "@typescript-eslint/eslint-plugin": "1.7.0",
+    "@typescript-eslint/parser": "1.7.0",
+    "babel-eslint": "10.0.1",
+    "cross-env": "5.2.0",
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "4.2.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-config-standard-jsx": "6.0.2",
+    "eslint-plugin-import": "2.17.2",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-prettier": "3.0.1",
+    "eslint-plugin-promise": "4.1.1",
+    "eslint-plugin-react": "7.12.4",
+    "eslint-plugin-standard": "4.0.0",
+    "nodemon": "1.18.11",
+    "pino-pretty": "2.6.1",
+    "prettier": "1.17.0",
+    "ts-node": "8.1.0",
+    "typescript": "3.4.5",
+    "updtr": "3.1.0"
+  },
+  "keywords": [],
+  "author": "Christoph Stock",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stockulus/spartakiade-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stockulus/spartakiade-node/issues"
+  },
+  "homepage": "https://github.com/stockulus/spartakiade-node#readme"
+}

@@ -1,0 +1,22 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.server.json"
+  },
+  "extends": [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "standard",
+    "standard-jsx",
+    "prettier",
+    "prettier/react",
+    "prettier/standard"
+  ],
+  "globals": {
+    "fetch": true
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
