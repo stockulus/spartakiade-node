@@ -1,5 +1,6 @@
 import * as fastify from 'fastify'
 
+import { init as initDb } from './db'
 import { PORT } from './env'
 
 type Todo = {
@@ -24,9 +25,10 @@ const todos: Array<Todo> = [
   }
 ]
 
-function main() {
+async function main() {
   const server = fastify({ logger: true })
 
+  await initDb()
   server.get('/', (_, reply) => {
     reply.send(todos)
   })

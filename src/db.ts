@@ -1,3 +1,6 @@
+import * as fs from 'fs'
+import * as path from 'path'
+
 import { Pool, QueryConfig } from 'pg'
 
 import {
@@ -17,4 +20,13 @@ const pool = new Pool({
 
 export function query(queryTextOrConfig: string | QueryConfig, values?: any[]) {
   return pool.query(queryTextOrConfig, values)
+}
+
+const createTableSql = fs.readFileSync(
+  path.join(__dirname, 'create_tables.sql'),
+  { encoding: 'utf8' }
+)
+
+export function init() {
+  return query(createTableSql)
 }
