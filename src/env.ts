@@ -6,7 +6,3 @@ export const POSTGRES_USER = process.env.POSTGRES_USER || 'sparta'
 export const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD || 'sparta'
 export const POSTGRES_DATABASE = process.env.POSTGRES_DATABASE || 'sparta'
 export const POSTGRES_HOST = process.env.POSTGRES_HOST || '127.0.0.1'
-
-export default {
-  test: 'super'
-}
