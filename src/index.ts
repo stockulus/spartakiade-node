@@ -26,9 +26,10 @@ const todos: Array<Todo> = [
 ]
 
 async function main() {
+  await initDb()
+
   const server = fastify({ logger: true })
 
-  await initDb()
   server.get('/', (_, reply) => {
     reply.send(todos)
   })
