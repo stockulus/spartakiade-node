@@ -1,16 +1,9 @@
 import * as fastify from 'fastify'
 
-import { init as initDb } from './db'
+import { init as initDb, getAll as getAllTodos, createTodo } from './db'
 import { PORT } from './env'
 
-type Todo = {
-  id: number
-  title: string
-  done: boolean
-  comment: string
-}
-
-const todos: Array<Todo> = [
+const todos = [
   {
     id: 1,
     title: 'DB Ticket',
@@ -31,12 +24,17 @@ async function main() {
   const server = fastify({ logger: true })
 
   server.get('/', (_, reply) => {
-    reply.send(todos)
+    getAllTodos().then(todos => {
+      reply.send(todos)
+    })
   })
 
   server.post('/', (request, reply) => {
-    todos.push({ ...request.body, id: todos.length + 1 })
-    reply.send({ id: todos.length })
+    createTodo(request.body)
+      .then(() => {
+        reply.send({})
+      })
+      .catch(error => reply.status(400).send(error))
   })
 
   server.put(

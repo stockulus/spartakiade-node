@@ -30,3 +30,27 @@ const createTableSql = fs.readFileSync(
 export function init() {
   return query(createTableSql)
 }
+
+export function getAll(): Promise<Array<Todo>> {
+  return query('select * from todo').then(result => {
+    return result.rows
+  })
+}
+
+export function createTodo(todo: Todo) {
+  return query('insert into todo values ($1, $2, $3, $4)', [
+    todo.id,
+    todo.title,
+    todo.comment,
+    todo.done
+  ]).then(() => {
+    return true
+  })
+}
+
+type Todo = {
+  id: number
+  title: string
+  done: boolean
+  comment: string
+}
